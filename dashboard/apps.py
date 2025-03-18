@@ -57,6 +57,21 @@ min_rent_day = day_df.loc[day_df["cnt"].idxmin(), ["dteday", "cnt"]]
 st.write(f"Hari dengan peminjaman terbanyak: {max_rent_day['dteday']} dengan {max_rent_day['cnt']} peminjaman.")
 st.write(f"Hari dengan peminjaman tersedikit: {min_rent_day['dteday']} dengan {min_rent_day['cnt']} peminjaman.")
 
+
+#no 3
+
+# Analisis Proporsi Peminjaman antara Hari Kerja dan Akhir Pekan
+st.header("3. Bagaimana proporsi peminjaman sepeda pada hari kerja vs akhir pekan?")
+weekend_count = day_df[day_df['weekday'].isin([0, 6])]['cnt'].sum()
+weekday_count = day_df[~day_df['weekday'].isin([0, 6])]['cnt'].sum()
+
+labels = ["Hari Kerja", "Akhir Pekan"]
+values = [weekday_count, weekend_count]
+
+fig, ax = plt.subplots()
+ax.pie(values, labels=labels, autopct='%1.1f%%', colors=["blue", "orange"])
+ax.set_title("Distribusi Peminjaman Sepeda pada Hari Kerja vs Akhir Pekan")
+st.pyplot(fig)
  
 
 st.caption('Copyright (c) 2025')
