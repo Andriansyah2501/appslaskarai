@@ -3,10 +3,17 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 import numpy as np
+from datetime import datetime
 
 st.title('🤖 Dashboard Visualisasi Data App')
-st.info('Hello Word')
-st.info('Dashboard Streamlit Andrian Syah')
+st.info('Dashboard Streamlit - Andrian Syah')
+
+
+
+current_dateTime = datetime.now()
+
+print(current_dateTime)
+# 2022-09-20 10:27:21.240752
 
 # Load data
 github_url_day = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/dashboard/day.csv"
@@ -14,9 +21,7 @@ github_url_hour = "https://raw.githubusercontent.com/andriansyah2501/appslaskara
 day_df = pd.read_csv(github_url_day)
 hour_df = pd.read_csv(github_url_hour)
 
-# Tampilkan data mentah
-
-st.title('Data Mentah - Dicoding Laskar AI')
+st.title('Data - Dicoding Laskar AI')
 tab1, tab2 = st.tabs(["Data Hari", "Data Jam"])
  
 with tab1:
