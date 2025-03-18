@@ -24,7 +24,7 @@ hour_avg = hour_df.groupby("hr")["cnt"].mean()
 # Streamlit UI
 
 
-st.header("1. Bagaimana pola penggunaan sepeda berubah berdasarkan musim?")
+st.title("1. Bagaimana pola penggunaan sepeda berubah berdasarkan musim?")
 fig, ax = plt.subplots()
 season_avg.plot(kind='bar', ax=ax, color=['blue', 'green', 'orange', 'red'])
 ax.set_xticklabels(['Semi', 'Panas', 'Gugur', 'Dingin'], rotation=0)
