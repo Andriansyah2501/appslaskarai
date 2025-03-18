@@ -11,7 +11,7 @@ st.info('Dashboard Streamlit Andrian Syah')
 
 import streamlit as st
  
-st.title('Belajar Analisis Data')
+st.title('Analisis Data')
 tab1, tab2 = st.tabs(["DATA HOUR", "DATA DAY"])
  
 with tab1:
@@ -22,8 +22,5 @@ with tab2:
     st.header("Tab 2")
     st.image("https://static.streamlit.io/examples/dog.jpg")
  
-with tab3:
-    st.header("Tab 3")
-    st.image("https://static.streamlit.io/examples/owl.jpg")
 
 st.caption('Copyright (c) 2025')
