@@ -15,12 +15,6 @@ st.sidebar.header("Informasi Aplikasi")
 st.sidebar.markdown(f"**Repository GitHub:** [Klik di sini]({github_repo})")
 st.sidebar.markdown(f"**Tanggal Pembuatan:** {creation_date}")
 
-def get_indonesia_time():
-    tz = pytz.timezone("Asia/Jakarta")
-    return datetime.datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
-
-st.sidebar.header("Informasi Waktu")
-st.sidebar.text(f"Waktu Indonesia: {get_indonesia_time()}")
 
 profile_image_url = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/data/profile.jpg"
 st.sidebar.image(profile_image_url, caption="Andrian Syah", width=150)
