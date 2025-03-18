@@ -9,11 +9,13 @@ st.info('Hello Word')
 st.info('Dashboard Streamlit Andrian Syah')
 st.title("Analisis Data Bike Sharing")
 
-import streamlit as st
+
  
 # Load data
-day_df = pd.read_csv("day.csv")
-hour_df = pd.read_csv("hour.csv")
+github_url_day = "https://raw.githubusercontent.com/andriansyah2501/repository/main/dashboard/day.csv"
+github_url_hour = "https://raw.githubusercontent.com/andriansyah2501/repository/main/dashboard/hour.csv"
+day_df = pd.read_csv(github_url_day)
+hour_df = pd.read_csv(github_url_hour)
 
 # Data processing
 season_avg = day_df.groupby("season")["cnt"].mean()
