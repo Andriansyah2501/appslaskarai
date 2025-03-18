@@ -16,7 +16,7 @@ hour_df = pd.read_csv(github_url_hour)
 
 # Tampilkan data mentah
 
-st.title('Belajar Analisis Data')
+st.title('Data Mentah - Dicoding Laskar AI')
 tab1, tab2 = st.tabs(["Data Hari", "Data Jam"])
  
 with tab1:
@@ -33,7 +33,7 @@ season_avg = day_df.groupby("season")["cnt"].mean()
 hour_avg = hour_df.groupby("hr")["cnt"].mean()
 
 # Streamlit UI
-
+st.header pertanyaan analisis data
 st.write("1. Bagaimana pola penggunaan sepeda berubah berdasarkan musim?")
 fig, ax = plt.subplots()
 season_avg.plot(kind='bar', ax=ax, color=['blue', 'green', 'orange', 'red'])
@@ -61,7 +61,7 @@ st.write(f"Hari dengan peminjaman tersedikit: {min_rent_day['dteday']} dengan {m
 #no 3
 
 # Analisis Proporsi Peminjaman antara Hari Kerja dan Akhir Pekan
-st.header("3. Bagaimana proporsi peminjaman sepeda pada hari kerja vs akhir pekan?")
+st.wite("3. Bagaimana proporsi peminjaman sepeda pada hari kerja vs akhir pekan?")
 weekend_count = day_df[day_df['weekday'].isin([0, 6])]['cnt'].sum()
 weekday_count = day_df[~day_df['weekday'].isin([0, 6])]['cnt'].sum()
 
