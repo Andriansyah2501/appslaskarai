@@ -4,5 +4,7 @@ import seaborn as sns
 import streamlit as st
 
 st.title('🤖 Visualisasi Data App')
-st.info('This is app builds a machine learning model!')
+st.info('Belajar Visualisasi Data')
+st.info('Dashboard Streamlit Andrian Syah')
+    
     
