@@ -41,7 +41,9 @@ with tab2:
     st.dataframe(hour_df)
 
 
-
+# Data processing
+season_avg = day_df.groupby("season")["cnt"].mean()
+hour_avg = hour_df.groupby("hr")["cnt"].mean()
 
 # Streamlit UI
 st.header("pertanyaan analisis data")
