@@ -19,7 +19,7 @@ st.sidebar.markdown(f"**Tanggal Pembuatan:** {creation_date}")
 
 
 profile_image_url = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/data/profile.jpg"
-st.sidebar.image(profile_image_url, caption="Andrian Syah", width=200)
+st.sidebar.image(profile_image_url, caption="Andrian Syah", width=250)
 
 # Load data
 github_url_day = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/dashboard/day.csv"
