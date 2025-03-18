@@ -30,10 +30,10 @@ hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
 st.title("Dashboard Penyewaan Sepeda")
 
 # Metrik
-st.metric("Total Penyewaan (Harian)", day_df['cnt'].sum())
-st.metric("Rata-rata Penyewaan per Hari", round(day_df['cnt'].mean(), 2))
-st.metric("Total Penyewaan (Per Jam)", hour_df['cnt'].sum())
-st.metric("Rata-rata Penyewaan per Jam", round(hour_df['cnt'].mean(), 2))
+# st.metric("Total Penyewaan (Harian)", day_df['cnt'].sum())
+# st.metric("Rata-rata Penyewaan per Hari", round(day_df['cnt'].mean(), 2))
+# st.metric("Total Penyewaan (Per Jam)", hour_df['cnt'].sum())
+# st.metric("Rata-rata Penyewaan per Jam", round(hour_df['cnt'].mean(), 2))
 
 # Grafik garis: Penyewaan dari waktu ke waktu
 st.subheader("Total Penyewaan dari Waktu ke Waktu")
