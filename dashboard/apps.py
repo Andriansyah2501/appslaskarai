@@ -61,7 +61,7 @@ st.write(f"Hari dengan peminjaman tersedikit: {min_rent_day['dteday']} dengan {m
 #no 3
 
 # Analisis Proporsi Peminjaman antara Hari Kerja dan Akhir Pekan
-st.wite("3. Bagaimana proporsi peminjaman sepeda pada hari kerja vs akhir pekan?")
+st.write("3. Bagaimana proporsi peminjaman sepeda pada hari kerja vs akhir pekan?")
 weekend_count = day_df[day_df['weekday'].isin([0, 6])]['cnt'].sum()
 weekday_count = day_df[~day_df['weekday'].isin([0, 6])]['cnt'].sum()
 
