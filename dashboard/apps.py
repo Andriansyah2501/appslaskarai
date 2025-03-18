@@ -10,9 +10,11 @@ st.title('🤖 Dashboard Visualisasi Data App')
 st.info('Dashboard Streamlit - Andrian Syah')
 
 github_repo = "https://github.com/andriansyah2501/appslaskarai"
+linkedln = "https://www.linkedin.com/in/andriansyah2501/"
 creation_date = "2025-03-18"
 st.sidebar.header("Informasi Aplikasi")
 st.sidebar.markdown(f"**Repository GitHub:** [Klik di sini]({github_repo})")
+st.sidebar.markdown(f"**Repository GitHub:** [Let's Connect Now]({linkedln})")
 st.sidebar.markdown(f"**Tanggal Pembuatan:** {creation_date}")
 
 
