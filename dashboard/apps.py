@@ -27,6 +27,10 @@ github_url_hour = "https://raw.githubusercontent.com/andriansyah2501/appslaskara
 day_df = pd.read_csv(github_url_day)
 hour_df = pd.read_csv(github_url_hour)
 
+
+#data wgagling
+day_df['dteday'] = pd.to_datetime(day_df['dteday'])
+
 st.title('Data - Dicoding Laskar AI')
 tab1, tab2 = st.tabs(["Data Hari", "Data Jam"])
  
