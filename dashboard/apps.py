@@ -80,20 +80,29 @@ ax.pie(values, labels=labels, autopct='%1.1f%%', colors=["blue", "orange"])
 ax.set_title("Distribusi Peminjaman Sepeda pada Hari Kerja vs Akhir Pekan")
 st.pyplot(fig)
 
-# RFM Analysis
-st.header("4. RFM Analysis (Recency, Frequency, Monetary)")
+st.title('Data - Dicoding Laskar AI')
+tab1, tab2 = st.tabs(["RFM ANALISIS", "CLUSTERING"])
+ 
+with tab1:
+RFM Analysis
+st.header("RFM Analysis (Recency, Frequency, Monetary)")
 rfm_df = day_df.groupby("dteday").agg({"cnt": ['sum', 'count']})
 rfm_df.columns = ["Total_Peminjaman", "Frekuensi_Peminjaman"]
 rfm_df['Recency'] = (pd.to_datetime(day_df['dteday']).max() - pd.to_datetime(day_df['dteday'])).dt.days
 st.dataframe(rfm_df)
-
-# Clustering (K-Means)
-st.header("5. Clustering Pengguna Berdasarkan Peminjaman")
+ 
+with tab2:
+st.header("Clustering Pengguna Berdasarkan Peminjaman")
 kmeans = KMeans(n_clusters=3)
 day_df['Cluster'] = kmeans.fit_predict(day_df[['cnt']])
 fig, ax = plt.subplots()
 sns.scatterplot(data=day_df, x="dteday", y="cnt", hue="Cluster", palette="viridis", ax=ax)
 st.pyplot(fig)
+
+
+
+# Clustering (K-Means)
+
 
 
 
