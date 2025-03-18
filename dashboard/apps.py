@@ -31,7 +31,7 @@ day_df = pd.read_csv(github_url_day)
 hour_df = pd.read_csv(github_url_hour)
 
 st.title('Data - Dicoding Laskar AI')
-tab1, tab2 = st.tabs(["Data Hari", "Data Jam"])
+tab1, tab2, tab3 , tab4 = st.tabs(["Data Hari", "Data Jam", "RFM Analysis", "Clustering"])
  
 with tab1:
     st.header("Data Harian")
@@ -40,6 +40,25 @@ with tab1:
 with tab2:
     st.header("Data Per Jam")
     st.dataframe(hour_df)
+
+with tab3:
+     st.header("RFM Analysis (Recency, Frequency, Monetary)")
+     rfm_df = day_df.groupby("dteday").agg({"cnt": ['sum', 'count']})
+     rfm_df.columns = ["Total_Peminjaman", "Frekuensi_Peminjaman"]
+     rfm_df['Recency'] = (pd.to_datetime(day_df['dteday']).max() - pd.to_datetime(day_df['dteday'])).dt.days
+     st.dataframe(rfm_df)
+
+with tab4:
+     st.header("Clustering Pengguna Berdasarkan Peminjaman")
+     kmeans = KMeans(n_clusters=3)
+     day_df['Cluster'] = kmeans.fit_predict(day_df[['cnt']])
+     fig, ax = plt.subplots()
+     sns.scatterplot(data=day_df, x="dteday", y="cnt", hue="Cluster", palette="viridis", ax=ax)
+     st.pyplot(fig)
+
+
+
+
 
 # Data processing
 season_avg = day_df.groupby("season")["cnt"].mean()
@@ -82,19 +101,7 @@ st.pyplot(fig)
 
 
 
-st.header("4. RFM Analysis (Recency, Frequency, Monetary)")
-rfm_df = day_df.groupby("dteday").agg({"cnt": ['sum', 'count']})
-rfm_df.columns = ["Total_Peminjaman", "Frekuensi_Peminjaman"]
-rfm_df['Recency'] = (pd.to_datetime(day_df['dteday']).max() - pd.to_datetime(day_df['dteday'])).dt.days
-st.dataframe(rfm_df)
 
-
-st.header("5. Clustering Pengguna Berdasarkan Peminjaman")
-kmeans = KMeans(n_clusters=3)
-day_df['Cluster'] = kmeans.fit_predict(day_df[['cnt']])
-fig, ax = plt.subplots()
-sns.scatterplot(data=day_df, x="dteday", y="cnt", hue="Cluster", palette="viridis", ax=ax)
-st.pyplot(fig)
 
 
 
