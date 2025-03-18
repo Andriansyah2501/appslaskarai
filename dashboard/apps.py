@@ -29,27 +29,6 @@ day_df = pd.read_csv(github_url_day)
 hour_df = pd.read_csv(github_url_hour)
 
 
-#data wgagling
-day_df['dteday'] = pd.to_datetime(day_df['dteday'])
-
-
-# Mengubah nama kolom untuk lebih mudah dipahami
-day_df.rename(columns={'cnt': 'total_peminjaman', 'temp': 'suhu'}, inplace=True)
-hour_df.rename(columns={'cnt': 'total_peminjaman', 'temp': 'suhu'}, inplace=True)
-
-# Menambahkan kolom baru untuk analisis
-day_df['year'] = day_df['dteday'].dt.year
-day_df['month'] = day_df['dteday'].dt.month
-day_df['day'] = day_df['dteday'].dt.day
-
-# Teknik Binning untuk mengelompokkan peminjaman
-bins = [0, 500, 1500, 3000, 5000, day_df['total_peminjaman'].max()]
-labels = ['Sangat Rendah', 'Rendah', 'Sedang', 'Tinggi', 'Sangat Tinggi']
-day_df['Kategori Peminjaman'] = pd.cut(day_df['total_peminjaman'], bins=bins, labels=labels, include_lowest=True)
-
-
-
-
 st.title('Data - Dicoding Laskar AI')
 tab1, tab2 = st.tabs(["Data Hari", "Data Jam"])
  
