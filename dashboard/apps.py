@@ -16,8 +16,12 @@ tab1, tab2 = st.tabs(["DATA HOUR", "DATA DAY"])
  
 with tab1:
     st.header("DATA HARI DALAM CHART")
-    st.image("https://static.streamlit.io/examples/cat.jpg")
+q25, q75 = np.percentile(data, 25), np.percentile(data, 75)
+iqr = q75 - q25
+cut_off = iqr * 1.5
+minimum, maximum = q25 - cut_off, q75 + cut_off
  
+outliers = [x for x in data if x < minimum or x > maximum]
 with tab2:
     st.header("DATA HARI PADA CHART")
     st.image("https://static.streamlit.io/examples/dog.jpg")
