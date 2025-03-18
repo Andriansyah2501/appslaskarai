@@ -11,4 +11,4 @@ st.info('Dashboard Streamlit Andrian Syah')
 
 
 
-st.caption('Copyright (c) 2023')
+st.caption('Copyright (c) 2025')
