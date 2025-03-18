@@ -12,8 +12,8 @@ st.title("Analisis Data Bike Sharing")
 
  
 # Load data
-github_url_day = "https://raw.githubusercontent.com/andriansyah2501/repository/main/dashboard/day.csv"
-github_url_hour = "https://raw.githubusercontent.com/andriansyah2501/repository/main/dashboard/hour.csv"
+github_url_day = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/dashboard/day.csv"
+github_url_hour = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/dashboard/hour.csv"
 day_df = pd.read_csv(github_url_day)
 hour_df = pd.read_csv(github_url_hour)
 
