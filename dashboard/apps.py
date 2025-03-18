@@ -46,6 +46,10 @@ ax.set_xlabel("Jam")
 ax.set_ylabel("Rata-rata peminjaman")
 st.pyplot(fig)
 
+st.header("3. Analisis Kenaikan dan Penurunan Peminjaman Sepeda")
+change_labels = ["Kenaikan", "Penurunan"]
+change_values = [max_rent_day['cnt'], min_rent_day['cnt']]
+
 
 correlation_temp_cnt = day_df["temp"].corr(day_df["cnt"])
 st.write(f"Korelasi antara suhu dan jumlah peminjaman sepeda: {correlation_temp_cnt:.2f}")
