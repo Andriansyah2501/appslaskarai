@@ -8,10 +8,16 @@ st.title('🤖 Dashboard Visualisasi Data App')
 st.info('Hello Word')
 st.info('Dashboard Streamlit Andrian Syah')
 
-x = np.random.normal(15, 5, 250)
+with col1:
+    st.header("Kolom 1")
+    st.image("https://static.streamlit.io/examples/cat.jpg")
  
-fig, ax = plt.subplots()
-ax.hist(x=x, bins=15)
-st.pyplot(fig)
+with col2:
+    st.header("Kolom 2")
+    st.image("https://static.streamlit.io/examples/dog.jpg")
+ 
+with col3:
+    st.header("Kolom 3")
+    st.image("https://static.streamlit.io/examples/owl.jpg")
 
 st.caption('Copyright (c) 2025')
