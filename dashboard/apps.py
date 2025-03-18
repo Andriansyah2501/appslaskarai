@@ -6,6 +6,18 @@ import matplotlib.pyplot as plt
 day_url = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/dashboard/day.csv"
 hour_url = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/dashboard/hour.csv"
 
+github_repo = "https://github.com/andriansyah2501/appslaskarai"
+linkedln = "https://www.linkedin.com/in/andriansyah2501/"
+creation_date = "2025-03-18"
+st.sidebar.header("Informasi Aplikasi")
+st.sidebar.markdown(f"**Repository GitHub:** [Klik di sini]({github_repo})")
+st.sidebar.markdown(f"**Linkedln:** [Let's Connect Now]({linkedln})")
+st.sidebar.markdown(f"**Tanggal Pembuatan:** {creation_date}")
+
+profile_image_url = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/data/profile.jpg"
+st.sidebar.image(profile_image_url, caption="Andrian Syah", width=250)
+
+
 # Muat data dari GitHub
 day_df = pd.read_csv(day_url)
 hour_df = pd.read_csv(hour_url)
