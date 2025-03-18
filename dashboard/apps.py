@@ -8,3 +8,7 @@ st.title('🤖 Dashboard Visualisasi Data App')
 st.info('Hello Word')
 st.info('Dashboard Streamlit Andrian Syah')
 
+
+
+
+st.caption('Copyright (c) 2023')
