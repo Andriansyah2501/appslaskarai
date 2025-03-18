@@ -109,3 +109,14 @@ with tab2:
     st.pyplot(fig)
     st.write("Penyewaan sepeda paling banyak terjadi pada jam sibuk pagi (07:00 - 09:00) dan sore (17:00 - 19:00).")
 
+
+st.subheader("Kesimpulan")
+kategori = ['Cuaca Cerah', 'Jam Sibuk Pagi', 'Jam Sibuk Sore']
+nilai = [weather_avg[1], hourly_total[8], hourly_total[18]]
+fig, ax = plt.subplots()
+ax.bar(kategori, nilai, color=['green', 'orange', 'red'])
+ax.set_ylabel("Jumlah Penyewaan")
+ax.set_title("Kesimpulan dari Analisis Penyewaan Sepeda")
+st.pyplot(fig)
+st.write("Dari analisis ini, kita dapat menyimpulkan bahwa penyewaan sepeda meningkat pada cuaca cerah serta pada jam sibuk pagi dan sore hari.")
+
