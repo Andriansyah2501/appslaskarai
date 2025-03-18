@@ -17,6 +17,13 @@ github_url_hour = "https://raw.githubusercontent.com/andriansyah2501/appslaskara
 day_df = pd.read_csv(github_url_day)
 hour_df = pd.read_csv(github_url_hour)
 
+# Tampilkan data mentah
+st.header("Data Harian")
+st.dataframe(day_df)
+
+st.header("Data Per Jam")
+st.dataframe(hour_df)
+
 # Data processing
 season_avg = day_df.groupby("season")["cnt"].mean()
 hour_avg = hour_df.groupby("hr")["cnt"].mean()
