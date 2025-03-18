@@ -36,10 +36,17 @@ st.title("Dashboard Penyewaan Sepeda")
 # st.metric("Rata-rata Penyewaan per Jam", round(hour_df['cnt'].mean(), 2))
 
 st.header("Data Laskar AI")
-st.subheader("Dataset Penyewaan Harian")
-st.dataframe(day_df)
-st.subheader("Dataset Penyewaan Per Jam")
-st.dataframe(hour_df)
+# Tab untuk menampilkan dataset
+data_tab1, data_tab2 = st.tabs(["Dataset Penyewaan Harian", "Dataset Penyewaan Per Jam"])
+
+with data_tab1:
+    st.subheader("Dataset Penyewaan Harian")
+    st.dataframe(day_df)
+
+with data_tab2:
+    st.subheader("Dataset Penyewaan Per Jam")
+    st.dataframe(hour_df)
+
 
 # Grafik garis: Penyewaan dari waktu ke waktu
 st.subheader("Total Penyewaan dari Waktu ke Waktu")
