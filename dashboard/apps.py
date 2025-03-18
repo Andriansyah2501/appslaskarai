@@ -15,13 +15,12 @@ st.sidebar.header("Informasi Aplikasi")
 st.sidebar.markdown(f"**Repository GitHub:** [Klik di sini]({github_repo})")
 st.sidebar.markdown(f"**Tanggal Pembuatan:** {creation_date}")
 
-def update_time():
-    while True:
-        current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        st.sidebar.markdown(f"### Waktu Saat Ini: {current_time}")
-        time.sleep(1)
+def get_indonesia_time():
+    tz = pytz.timezone("Asia/Jakarta")
+    return datetime.datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
+
 st.sidebar.header("Informasi Waktu")
-st.sidebar.text(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+st.sidebar.text(f"Waktu Indonesia: {get_indonesia_time()}")
 
 profile_image_url = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/data/profile.jpg"
 st.sidebar.image(profile_image_url, caption="Andrian Syah", width=150)
