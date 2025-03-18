@@ -95,12 +95,6 @@ fig, ax = plt.subplots()
 sns.scatterplot(data=day_df, x="dteday", y="cnt", hue="Cluster", palette="viridis", ax=ax)
 st.pyplot(fig)
 
-# Geospatial Analysis
-st.header("6. Geospatial Analysis - Peta Peminjaman Sepeda")
-map_center = [1.1365, 104.0422]
-m = folium.Map(location=map_center, zoom_start=12)
-for _, row in day_df.iterrows():
-    folium.CircleMarker(location=[1.1365, 104.0422], radius=row['cnt'] / 500, color='blue', fill=True).add_to(m)
-folium_static(m)
+
 
 st.caption('Copyright (c) 2025')
