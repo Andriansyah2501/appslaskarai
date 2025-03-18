@@ -18,11 +18,18 @@ day_df = pd.read_csv(github_url_day)
 hour_df = pd.read_csv(github_url_hour)
 
 # Tampilkan data mentah
-st.header("Data Harian")
-st.dataframe(day_df)
 
-st.header("Data Per Jam")
-st.dataframe(hour_df)
+st.title('Belajar Analisis Data')
+tab1, tab2 = st.tabs(["Data Hari", "Data Jam"])
+ 
+with tab1:
+    st.header("Data Harian")
+    st.dataframe(day_df)
+ 
+with tab2:
+    st.header("Data Per Jam")
+    st.dataframe(hour_df)
+
 
 # Data processing
 season_avg = day_df.groupby("season")["cnt"].mean()
