@@ -11,9 +11,9 @@ st.info('Dashboard Streamlit - Andrian Syah')
 
 
 current_dateTime = datetime.now()
+print(current_dateTime.year)
+# 2022
 
-print(current_dateTime)
-# 2022-09-20 10:27:21.240752
 
 # Load data
 github_url_day = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/dashboard/day.csv"
