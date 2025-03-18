@@ -41,27 +41,6 @@ with tab2:
     st.dataframe(hour_df)
 
 
-# Data processing
-season_avg = day_df.groupby("season")["cnt"].mean()
-hour_avg = hour_df.groupby("hr")["cnt"].mean()
-
-# Data Wrangling
-# Mengonversi tanggal menjadi format datetime
-day_df['dteday'] = pd.to_datetime(day_df['dteday'])
-
-# Mengubah nama kolom untuk lebih mudah dipahami
-day_df.rename(columns={'cnt': 'total_peminjaman', 'temp': 'suhu'}, inplace=True)
-hour_df.rename(columns={'cnt': 'total_peminjaman', 'temp': 'suhu'}, inplace=True)
-
-# Menambahkan kolom baru untuk analisis
-day_df['year'] = day_df['dteday'].dt.year
-day_df['month'] = day_df['dteday'].dt.month
-day_df['day'] = day_df['dteday'].dt.day
-
-# Teknik Binning untuk mengelompokkan peminjaman
-bins = [0, 500, 1500, 3000, 5000, day_df['total_peminjaman'].max()]
-labels = ['Sangat Rendah', 'Rendah', 'Sedang', 'Tinggi', 'Sangat Tinggi']
-day_df['Kategori Peminjaman'] = pd.cut(day_df['total_peminjaman'], bins=bins, labels=labels, include_lowest=True)
 
 
 # Streamlit UI
