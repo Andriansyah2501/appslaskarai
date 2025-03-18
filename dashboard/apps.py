@@ -46,9 +46,6 @@ ax.set_xlabel("Jam")
 ax.set_ylabel("Rata-rata peminjaman")
 st.pyplot(fig)
 
-st.header("3. Analisis Kenaikan dan Penurunan Peminjaman Sepeda")
-change_labels = ["Kenaikan", "Penurunan"]
-change_values = [max_rent_day['cnt'], min_rent_day['cnt']]
 
 
 max_rent_day = day_df.loc[day_df["cnt"].idxmax(), ["dteday", "cnt"]]
