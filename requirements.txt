@@ -1,6 +1,4 @@
-Babel
-matplotlib
+streamlit
 numpy
 pandas
-seaborn
-streamlit
+scikit-learn
