@@ -33,7 +33,7 @@ season_avg = day_df.groupby("season")["cnt"].mean()
 hour_avg = hour_df.groupby("hr")["cnt"].mean()
 
 # Streamlit UI
-st.header pertanyaan analisis data
+st.header("pertanyaan analisis data")
 st.write("1. Bagaimana pola penggunaan sepeda berubah berdasarkan musim?")
 fig, ax = plt.subplots()
 season_avg.plot(kind='bar', ax=ax, color=['blue', 'green', 'orange', 'red'])
