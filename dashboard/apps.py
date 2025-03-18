@@ -51,10 +51,6 @@ change_labels = ["Kenaikan", "Penurunan"]
 change_values = [max_rent_day['cnt'], min_rent_day['cnt']]
 
 
-correlation_temp_cnt = day_df["temp"].corr(day_df["cnt"])
-st.write(f"Korelasi antara suhu dan jumlah peminjaman sepeda: {correlation_temp_cnt:.2f}")
-
-
 max_rent_day = day_df.loc[day_df["cnt"].idxmax(), ["dteday", "cnt"]]
 min_rent_day = day_df.loc[day_df["cnt"].idxmin(), ["dteday", "cnt"]]
 
