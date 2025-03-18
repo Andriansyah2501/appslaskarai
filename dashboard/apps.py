@@ -7,10 +7,7 @@ import numpy as np
 st.title('🤖 Dashboard Visualisasi Data App')
 st.info('Hello Word')
 st.info('Dashboard Streamlit Andrian Syah')
-st.title("Analisis Data Bike Sharing")
 
-
- 
 # Load data
 github_url_day = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/dashboard/day.csv"
 github_url_hour = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/dashboard/hour.csv"
@@ -36,7 +33,6 @@ season_avg = day_df.groupby("season")["cnt"].mean()
 hour_avg = hour_df.groupby("hr")["cnt"].mean()
 
 # Streamlit UI
-
 
 st.write("1. Bagaimana pola penggunaan sepeda berubah berdasarkan musim?")
 fig, ax = plt.subplots()
