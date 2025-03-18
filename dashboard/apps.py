@@ -11,10 +11,6 @@ st.title("Analisis Data Bike Sharing")
 
 import streamlit as st
  
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-
 # Load data
 day_df = pd.read_csv("day.csv")
 hour_df = pd.read_csv("hour.csv")
