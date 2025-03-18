@@ -111,12 +111,23 @@ with tab2:
 
 
 st.subheader("Kesimpulan")
-kategori = ['Cuaca Cerah', 'Jam Sibuk Pagi', 'Jam Sibuk Sore']
-nilai = [weather_avg[1], hourly_total[8], hourly_total[18]]
-fig, ax = plt.subplots()
-ax.bar(kategori, nilai, color=['green', 'orange', 'red'])
-ax.set_ylabel("Jumlah Penyewaan")
-ax.set_title("Kesimpulan dari Analisis Penyewaan Sepeda")
-st.pyplot(fig)
-st.write("Dari analisis ini, kita dapat menyimpulkan bahwa penyewaan sepeda meningkat pada cuaca cerah serta pada jam sibuk pagi dan sore hari.")
+k_tab1, k_tab2 = st.tabs(["Ringkasan Kesimpulan", "Data Kesimpulan Lengkap"])
 
+with k_tab1:
+    st.subheader("Ringkasan Kesimpulan")
+    kategori = ['Cuaca Cerah', 'Jam Sibuk Pagi', 'Jam Sibuk Sore']
+    nilai = [weather_avg[1], hourly_total[8], hourly_total[18]]
+    fig, ax = plt.subplots()
+    ax.bar(kategori, nilai, color=['green', 'orange', 'red'])
+    ax.set_ylabel("Jumlah Penyewaan")
+    ax.set_title("Kesimpulan dari Analisis Penyewaan Sepeda")
+    st.pyplot(fig)
+    st.write("Dari analisis ini, kita dapat menyimpulkan bahwa penyewaan sepeda meningkat pada cuaca cerah serta pada jam sibuk pagi dan sore hari.")
+
+with k_tab2:
+    st.subheader("Data Kesimpulan Lengkap")
+    summary_df = pd.DataFrame({
+        "Faktor": ["Cuaca Cerah", "Jam Sibuk Pagi (07:00 - 09:00)", "Jam Sibuk Sore (17:00 - 19:00)"],
+        "Jumlah Penyewaan": [weather_avg[1], hourly_total[8], hourly_total[18]]
+    })
+    st.dataframe(summary_df)
