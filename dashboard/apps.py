@@ -9,6 +9,12 @@ import time
 st.title('🤖 Dashboard Visualisasi Data App')
 st.info('Dashboard Streamlit - Andrian Syah')
 
+github_repo = "https://github.com/andriansyah2501/appslaskarai"
+creation_date = "2025-03-18"
+st.sidebar.header("Informasi Aplikasi")
+st.sidebar.markdown(f"**Repository GitHub:** [Klik di sini]({github_repo})")
+st.sidebar.markdown(f"**Tanggal Pembuatan:** {creation_date}")
+
 def update_time():
     while True:
         current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
