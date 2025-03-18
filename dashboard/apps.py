@@ -12,7 +12,7 @@ st.info('Dashboard Streamlit Andrian Syah')
 import streamlit as st
  
 st.title('Belajar Analisis Data')
-tab1, tab2, tab3 = st.tabs(["Tab 1", "Tab 2", "Tab 3"])
+tab1, tab2 = st.tabs(["DATA HOUR", "DATA DAY"])
  
 with tab1:
     st.header("Tab 1")
