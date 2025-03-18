@@ -17,8 +17,6 @@ tab1, tab2 = st.tabs(["DATA HOUR", "DATA DAY"])
 with tab1:
     st.header("DATA HARI DALAM CHART")
 
- 
-outliers = [x for x in data if x < minimum or x > maximum]
 with tab2:
     st.header("DATA HARI PADA CHART")
     st.image("https://static.streamlit.io/examples/dog.jpg")
