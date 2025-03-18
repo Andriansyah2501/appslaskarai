@@ -8,7 +8,7 @@ import time
 import pytz
 from sklearn.cluster import KMeans
 import folium
-from streamlit_folium import folium_static
+
 
 st.title('🤖 Dashboard Visualisasi Data App')
 st.info('Dashboard Streamlit - Andrian Syah')
