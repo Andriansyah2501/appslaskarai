@@ -15,11 +15,11 @@ st.title('Analisis Data')
 tab1, tab2 = st.tabs(["DATA HOUR", "DATA DAY"])
  
 with tab1:
-    st.header("Tab 1")
+    st.header("DATA HARI DALAM CHART")
     st.image("https://static.streamlit.io/examples/cat.jpg")
  
 with tab2:
-    st.header("Tab 2")
+    st.header("DATA HARI PADA CHART")
     st.image("https://static.streamlit.io/examples/dog.jpg")
  
 
