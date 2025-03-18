@@ -3,17 +3,19 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 import numpy as np
-from datetime import datetime
+import datetime
+import time
 
 st.title('🤖 Dashboard Visualisasi Data App')
 st.info('Dashboard Streamlit - Andrian Syah')
 
-
-
-current_dateTime = datetime.now()
-print(current_dateTime.year)
-# 2022
-
+def update_time():
+    while True:
+        current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        st.sidebar.markdown(f"### Waktu Saat Ini: {current_time}")
+        time.sleep(1)
+st.sidebar.header("Informasi Waktu")
+st.sidebar.text(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 # Load data
 github_url_day = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/dashboard/day.csv"
