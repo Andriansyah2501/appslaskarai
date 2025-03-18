@@ -81,3 +81,31 @@ st.write("Frequency: Seberapa sering penyewaan dilakukan.")
 st.write("Monetary: Total penyewaan dalam periode tertentu.")
 
 st.dataframe(rfm_df)
+
+
+# Tab untuk Analisis Pertanyaan
+st.subheader("Analisis Penyewaan Sepeda")
+tab1, tab2 = st.tabs(["Pengaruh Cuaca", "Distribusi Penyewaan Berdasarkan Jam"])
+
+with tab1:
+    st.subheader("Bagaimana cuaca mempengaruhi penyewaan sepeda?")
+    weather_avg = day_df.groupby('weathersit')['cnt'].mean()
+    fig, ax = plt.subplots()
+    ax.bar(weather_avg.index.astype(str), weather_avg.values, color=['green', 'orange', 'red', 'blue'])
+    ax.set_xlabel("Jenis Cuaca")
+    ax.set_ylabel("Rata-rata Penyewaan")
+    ax.set_title("Pengaruh Cuaca terhadap Penyewaan Sepeda")
+    st.pyplot(fig)
+    st.write("Cuaca cerah (1) memiliki tingkat penyewaan lebih tinggi dibandingkan cuaca mendung (2) dan hujan/salju (3 & 4).")
+
+with tab2:
+    st.subheader("Pada jam berapa penyewaan sepeda paling banyak terjadi?")
+    hourly_total = hour_df.groupby('hr')['cnt'].sum()
+    fig, ax = plt.subplots()
+    ax.bar(hourly_total.index, hourly_total.values, color='blue')
+    ax.set_xlabel("Jam")
+    ax.set_ylabel("Total Penyewaan")
+    ax.set_title("Distribusi Penyewaan Sepeda Berdasarkan Jam")
+    st.pyplot(fig)
+    st.write("Penyewaan sepeda paling banyak terjadi pada jam sibuk pagi (07:00 - 09:00) dan sore (17:00 - 19:00).")
+
