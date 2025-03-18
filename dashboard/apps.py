@@ -81,14 +81,15 @@ ax.set_title("Distribusi Peminjaman Sepeda pada Hari Kerja vs Akhir Pekan")
 st.pyplot(fig)
 
 
-st.header("RFM Analysis (Recency, Frequency, Monetary)")
+# RFM Analysis
+st.header("4. RFM Analysis (Recency, Frequency, Monetary)")
 rfm_df = day_df.groupby("dteday").agg({"cnt": ['sum', 'count']})
 rfm_df.columns = ["Total_Peminjaman", "Frekuensi_Peminjaman"]
 rfm_df['Recency'] = (pd.to_datetime(day_df['dteday']).max() - pd.to_datetime(day_df['dteday'])).dt.days
 st.dataframe(rfm_df)
- 
 
-st.header("Clustering Pengguna Berdasarkan Peminjaman")
+# Clustering (K-Means)
+st.header("5. Clustering Pengguna Berdasarkan Peminjaman")
 kmeans = KMeans(n_clusters=3)
 day_df['Cluster'] = kmeans.fit_predict(day_df[['cnt']])
 fig, ax = plt.subplots()
@@ -96,8 +97,6 @@ sns.scatterplot(data=day_df, x="dteday", y="cnt", hue="Cluster", palette="viridi
 st.pyplot(fig)
 
 
-
-# Clustering (K-Means)
 
 
 
