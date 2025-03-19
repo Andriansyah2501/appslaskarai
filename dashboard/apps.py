@@ -36,7 +36,61 @@ st.title("Dashboard Penyewaan Sepeda")
 # st.metric("Rata-rata Penyewaan per Jam", round(hour_df['cnt'].mean(), 2))
 
 st.header("Data Laskar AI")
-# Tab untuk menampilkan dataset
+# Load dataset
+st.write("🔄 Memuat dataset...")
+day_df = pd.read_csv(day_url)
+hour_df = pd.read_csv(hour_url)
+st.success("✅ Dataset berhasil dimuat!")
+
+# Cek missing values
+st.write("🔍 Mengecek missing values...")
+missing_day = day_df.isnull().sum().sum()
+missing_hour = hour_df.isnull().sum().sum()
+
+if missing_day > 0 or missing_hour > 0:
+    day_df.fillna(method='ffill', inplace=True)
+    hour_df.fillna(method='ffill', inplace=True)
+    st.warning(f"⚠️ Missing values ditemukan dan telah diperbaiki ({missing_day} di day.csv, {missing_hour} di hour.csv)")
+else:
+    st.success("✅ Tidak ada missing values!")
+
+# Cek duplikasi
+st.write("🔍 Mengecek duplikasi...")
+duplicates_day = day_df.duplicated().sum()
+duplicates_hour = hour_df.duplicated().sum()
+
+if duplicates_day > 0 or duplicates_hour > 0:
+    day_df.drop_duplicates(inplace=True)
+    hour_df.drop_duplicates(inplace=True)
+    st.warning(f"⚠️ {duplicates_day} duplikasi dihapus dari day.csv dan {duplicates_hour} dari hour.csv")
+else:
+    st.success("✅ Tidak ada duplikasi!")
+
+# Konversi format tanggal
+st.write("🔄 Mengonversi format tanggal...")
+day_df['dteday'] = pd.to_datetime(day_df['dteday'])
+hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
+st.success("✅ Format tanggal sudah benar!")
+
+# Cek outliers
+st.write("📊 Mengecek outliers...")
+Q1 = day_df['cnt'].quantile(0.25)
+Q3 = day_df['cnt'].quantile(0.75)
+IQR = Q3 - Q1
+lower_bound = Q1 - 1.5 * IQR
+upper_bound = Q3 + 1.5 * IQR
+
+outliers_count = ((day_df['cnt'] < lower_bound) | (day_df['cnt'] > upper_bound)).sum()
+if outliers_count > 0:
+    day_df = day_df[(day_df['cnt'] >= lower_bound) & (day_df['cnt'] <= upper_bound)]
+    st.warning(f"⚠️ {outliers_count} outliers telah dihapus!")
+else:
+    st.success("✅ Tidak ada outliers yang ditemukan!")
+
+st.balloons()
+st.success("🎉 Data cleaning selesai! Data siap digunakan untuk analisis!")
+
+# Tabs
 data_tab1, data_tab2, data_tab3 = st.tabs(["Dataset Penyewaan Harian", "Dataset Penyewaan Per Jam", "Cleaning Notification"])
 
 with data_tab1:
@@ -48,8 +102,12 @@ with data_tab2:
     st.dataframe(hour_df)
 
 with data_tab3:
-    st.subheader("Dataset Penyewaan Per Jam")
-    st.dataframe(hour_df)
+    st.subheader("Cleaning Notification")
+    st.write("🔍 Proses pembersihan data telah dilakukan.")
+    st.write(f"✅ Missing values diperbaiki: {missing_day} di day.csv, {missing_hour} di hour.csv")
+    st.write(f"✅ Duplikasi dihapus: {duplicates_day} di day.csv, {duplicates_hour} di hour.csv")
+    st.write(f"✅ Outliers dihapus: {outliers_count}")
+    st.success("🎉 Data siap digunakan untuk analisis!")
 
 
 
