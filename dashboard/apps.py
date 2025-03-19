@@ -46,8 +46,8 @@ with data_tab1:
 with data_tab2:
     st.subheader("Dataset Penyewaan Per Jam")
     st.dataframe(hour_df)
+
 with data_tab3:
-st.subheader("Data Cleaning Notification - Penyewaan Sepeda")
 # Load dataset
 st.write("🔄 Memuat dataset...")
 day_df = pd.read_csv(day_url)
