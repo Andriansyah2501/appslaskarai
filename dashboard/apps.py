@@ -40,49 +40,6 @@ st.header("Data Laskar AI")
 day_df = pd.read_csv(day_url)
 hour_df = pd.read_csv(hour_url)
 
-# Cek missing values
-missing_day = day_df.isnull().sum().sum()
-missing_hour = hour_df.isnull().sum().sum()
-
-if missing_day > 0 or missing_hour > 0:
-    day_df.fillna(method='ffill', inplace=True)
-    hour_df.fillna(method='ffill', inplace=True)
-    
-else:
-  
-
-# Cek duplikasi
-
-duplicates_day = day_df.duplicated().sum()
-duplicates_hour = hour_df.duplicated().sum()
-
-if duplicates_day > 0 or duplicates_hour > 0:
-    day_df.drop_duplicates(inplace=True)
-    hour_df.drop_duplicates(inplace=True)
-    
-else:
-   
-
-# Konversi format tanggal
-
-day_df['dteday'] = pd.to_datetime(day_df['dteday'])
-hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
-
-
-# Cek outliers
-st.write("📊 Mengecek outliers...")
-Q1 = day_df['cnt'].quantile(0.25)
-Q3 = day_df['cnt'].quantile(0.75)
-IQR = Q3 - Q1
-lower_bound = Q1 - 1.5 * IQR
-upper_bound = Q3 + 1.5 * IQR
-
-outliers_count = ((day_df['cnt'] < lower_bound) | (day_df['cnt'] > upper_bound)).sum()
-if outliers_count > 0:
-    day_df = day_df[(day_df['cnt'] >= lower_bound) & (day_df['cnt'] <= upper_bound)]
-   else:
-    
-
 
 # Tabs
 data_tab1, data_tab2, data_tab3 = st.tabs(["Dataset Penyewaan Harian", "Dataset Penyewaan Per Jam", "Cleaning Notification"])
