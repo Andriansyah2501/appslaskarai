@@ -52,14 +52,6 @@ with data_tab2:
     st.subheader("Dataset Penyewaan Per Jam")
     st.dataframe(hour_df)
 
-with data_tab3:
-    st.subheader("Cleaning Notification")
-    st.write("🔍 Proses pembersihan data telah dilakukan.")
-    st.write(f"✅ Missing values diperbaiki: {missing_day} di day.csv, {missing_hour} di hour.csv")
-    st.write(f"✅ Duplikasi dihapus: {duplicates_day} di day.csv, {duplicates_hour} di hour.csv")
-    st.write(f"✅ Outliers dihapus: {outliers_count}")
-    st.success("🎉 Data siap digunakan untuk analisis!")
-
 
 
 # Grafik garis: Penyewaan dari waktu ke waktu
