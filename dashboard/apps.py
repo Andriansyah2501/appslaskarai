@@ -48,6 +48,49 @@ with data_tab2:
     st.dataframe(hour_df)
 
 
+# 1. Cek missing values
+print("Missing values di day_df:\n", day_df.isnull().sum())
+print("Missing values di hour_df:\n", hour_df.isnull().sum())
+
+# Jika ada nilai yang hilang, isi dengan metode tertentu
+day_df.fillna(method='ffill', inplace=True)
+hour_df.fillna(method='ffill', inplace=True)
+
+# 2. Cek duplikasi
+print("Duplikasi di day_df:", day_df.duplicated().sum())
+print("Duplikasi di hour_df:", hour_df.duplicated().sum())
+
+# Hapus duplikasi jika ada
+day_df.drop_duplicates(inplace=True)
+hour_df.drop_duplicates(inplace=True)
+
+# 3. Pastikan format tanggal benar
+day_df['dteday'] = pd.to_datetime(day_df['dteday'])
+hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
+
+# 4. Cek outliers (misalnya pada kolom 'cnt')
+Q1 = day_df['cnt'].quantile(0.25)
+Q3 = day_df['cnt'].quantile(0.75)
+IQR = Q3 - Q1
+
+# Tentukan batas bawah dan atas untuk outlier
+lower_bound = Q1 - 1.5 * IQR
+upper_bound = Q3 + 1.5 * IQR
+
+# Hapus outlier jika diperlukan
+day_df = day_df[(day_df['cnt'] >= lower_bound) & (day_df['cnt'] <= upper_bound)]
+
+# 5. Cek tipe data
+print("Tipe data di day_df:\n", day_df.dtypes)
+print("Tipe data di hour_df:\n", hour_df.dtypes)
+
+# Simpan kembali data yang sudah bersih jika diperlukan
+day_df.to_csv("clean_day.csv", index=False)
+hour_df.to_csv("clean_hour.csv", index=False)
+
+print("Cleaning data selesai!")
+
+
 # Grafik garis: Penyewaan dari waktu ke waktu
 st.subheader("Total Penyewaan dari Waktu ke Waktu")
 fig, ax = plt.subplots()
