@@ -48,47 +48,61 @@ with data_tab2:
     st.dataframe(hour_df)
 
 
-# 1. Cek missing values
-print("Missing values di day_df:\n", day_df.isnull().sum())
-print("Missing values di hour_df:\n", hour_df.isnull().sum())
+st.title("Data Cleaning Notification - Penyewaan Sepeda")
 
-# Jika ada nilai yang hilang, isi dengan metode tertentu
-day_df.fillna(method='ffill', inplace=True)
-hour_df.fillna(method='ffill', inplace=True)
+# Load dataset
+st.write("🔄 Memuat dataset...")
+day_df = pd.read_csv(day_url)
+hour_df = pd.read_csv(hour_url)
+st.success("✅ Dataset berhasil dimuat!")
 
-# 2. Cek duplikasi
-print("Duplikasi di day_df:", day_df.duplicated().sum())
-print("Duplikasi di hour_df:", hour_df.duplicated().sum())
+# Cek missing values
+st.write("🔍 Mengecek missing values...")
+missing_day = day_df.isnull().sum().sum()
+missing_hour = hour_df.isnull().sum().sum()
 
-# Hapus duplikasi jika ada
-day_df.drop_duplicates(inplace=True)
-hour_df.drop_duplicates(inplace=True)
+if missing_day > 0 or missing_hour > 0:
+    day_df.fillna(method='ffill', inplace=True)
+    hour_df.fillna(method='ffill', inplace=True)
+    st.warning(f"⚠️ Missing values ditemukan dan telah diperbaiki ({missing_day} di day.csv, {missing_hour} di hour.csv)")
+else:
+    st.success("✅ Tidak ada missing values!")
 
-# 3. Pastikan format tanggal benar
+# Cek duplikasi
+st.write("🔍 Mengecek duplikasi...")
+duplicates_day = day_df.duplicated().sum()
+duplicates_hour = hour_df.duplicated().sum()
+
+if duplicates_day > 0 or duplicates_hour > 0:
+    day_df.drop_duplicates(inplace=True)
+    hour_df.drop_duplicates(inplace=True)
+    st.warning(f"⚠️ {duplicates_day} duplikasi dihapus dari day.csv dan {duplicates_hour} dari hour.csv")
+else:
+    st.success("✅ Tidak ada duplikasi!")
+
+# Konversi format tanggal
+st.write("🔄 Mengonversi format tanggal...")
 day_df['dteday'] = pd.to_datetime(day_df['dteday'])
 hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
+st.success("✅ Format tanggal sudah benar!")
 
-# 4. Cek outliers (misalnya pada kolom 'cnt')
+# Cek outliers
+st.write("📊 Mengecek outliers...")
 Q1 = day_df['cnt'].quantile(0.25)
 Q3 = day_df['cnt'].quantile(0.75)
 IQR = Q3 - Q1
-
-# Tentukan batas bawah dan atas untuk outlier
 lower_bound = Q1 - 1.5 * IQR
 upper_bound = Q3 + 1.5 * IQR
 
-# Hapus outlier jika diperlukan
-day_df = day_df[(day_df['cnt'] >= lower_bound) & (day_df['cnt'] <= upper_bound)]
+outliers_count = ((day_df['cnt'] < lower_bound) | (day_df['cnt'] > upper_bound)).sum()
+if outliers_count > 0:
+    day_df = day_df[(day_df['cnt'] >= lower_bound) & (day_df['cnt'] <= upper_bound)]
+    st.warning(f"⚠️ {outliers_count} outliers telah dihapus!")
+else:
+    st.success("✅ Tidak ada outliers yang ditemukan!")
 
-# 5. Cek tipe data
-print("Tipe data di day_df:\n", day_df.dtypes)
-print("Tipe data di hour_df:\n", hour_df.dtypes)
-
-# Simpan kembali data yang sudah bersih jika diperlukan
-day_df.to_csv("clean_day.csv", index=False)
-hour_df.to_csv("clean_hour.csv", index=False)
-
-print("Cleaning data selesai!")
+st.balloons()
+st.success("🎉 Data cleaning selesai! Data siap digunakan untuk analisis!")
 
 
 # Grafik garis: Penyewaan dari waktu ke waktu
