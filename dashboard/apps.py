@@ -37,7 +37,7 @@ st.title("Dashboard Penyewaan Sepeda")
 
 st.header("Data Laskar AI")
 # Tab untuk menampilkan dataset
-data_tab1, data_tab2 = st.tabs(["Dataset Penyewaan Harian", "Dataset Penyewaan Per Jam"])
+data_tab1, data_tab2, data_tab3 = st.tabs(["Dataset Penyewaan Harian", "Dataset Penyewaan Per Jam", "Cleaning Notification"])
 
 with data_tab1:
     st.subheader("Dataset Penyewaan Harian")
@@ -46,10 +46,8 @@ with data_tab1:
 with data_tab2:
     st.subheader("Dataset Penyewaan Per Jam")
     st.dataframe(hour_df)
-
-
-st.title("Data Cleaning Notification - Penyewaan Sepeda")
-
+with data_tab3:
+st.subheader("Data Cleaning Notification - Penyewaan Sepeda")
 # Load dataset
 st.write("🔄 Memuat dataset...")
 day_df = pd.read_csv(day_url)
