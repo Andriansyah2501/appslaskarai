@@ -36,13 +36,8 @@ st.title("Dashboard Penyewaan Sepeda")
 # st.metric("Rata-rata Penyewaan per Jam", round(hour_df['cnt'].mean(), 2))
 
 st.header("Data Laskar AI")
-# Load dataset
-day_df = pd.read_csv(day_url)
-hour_df = pd.read_csv(hour_url)
-
-
-# Tabs
-data_tab1, data_tab2, data_tab3 = st.tabs(["Dataset Penyewaan Harian", "Dataset Penyewaan Per Jam", "Cleaning Notification"])
+# Tab untuk menampilkan dataset
+data_tab1, data_tab2 = st.tabs(["Dataset Penyewaan Harian", "Dataset Penyewaan Per Jam"])
 
 with data_tab1:
     st.subheader("Dataset Penyewaan Harian")
@@ -51,7 +46,6 @@ with data_tab1:
 with data_tab2:
     st.subheader("Dataset Penyewaan Per Jam")
     st.dataframe(hour_df)
-
 
 
 # Grafik garis: Penyewaan dari waktu ke waktu
@@ -143,4 +137,3 @@ with k_tab2:
         "Faktor": ["Cuaca Cerah", "Jam Sibuk Pagi (07:00 - 09:00)", "Jam Sibuk Sore (17:00 - 19:00)"],
         "Jumlah Penyewaan": [weather_avg[1], hourly_total[8], hourly_total[18]]
     })
-    st.dataframe(summary_df)
