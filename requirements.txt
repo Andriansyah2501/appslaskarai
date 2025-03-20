@@ -4,7 +4,7 @@ matplotlib
 seaborn
 streamlit
 
-#Catatan Reviewer Jika Requierment diberikan versi maka apps stream tidak dapat berjalan dan diakses dimanapun
+#Catatan Reviewer Jika Requierment diberikan versi maka apps stream tidak dapat berjalan dan diakses melalui link saya 
 #pandas==1.5.3
 #numpy==1.24.3
 #matplotlib==3.7.1
