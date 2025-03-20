@@ -3,3 +3,5 @@ numpy
 matplotlib
 seaborn
 streamlit
+
+#Catatan Reviewer Jika Requierment diberikan versi maka apps stream tidak dapat berjalan dan diakses dimanapun
