@@ -68,6 +68,7 @@ st.pyplot(fig)
 
 
 # Pertanyaan 2:  Pada jam berapa peminjaman sepeda tertinggi?
+st.subheader("📊 Distribusi Peminjaman Sepeda per Jam (Hour Dataset)")
 fig, ax = plt.subplots(figsize=(10, 5))
 sns.barplot(x=hour_df["hr"], y=hour_df["cnt"], estimator=sum, palette="viridis", ax=ax)
 ax.set_title("Distribusi Peminjaman Sepeda per Jam (Hour Dataset)")
