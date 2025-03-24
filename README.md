@@ -14,7 +14,7 @@ Langkah-langkah untuk menyiapkan lingkungan agar dashboard bisa dijalankan.
   - Harusnya muncul versi (misalnya, `Python 3.9.0`).
 
 ### 2. Unduh File Proyek
-- Salin semua file (`day.csv`, `dashboard.py`, `requirements.txt`) ke folder lokal, misalnya: `C:\Proyek_Analisis_Data`.
+- Salin semua file (`day.csv`, `hour.csv` , `apps.py`, `requirements.txt`) ke folder lokal, misalnya: `C:\Proyek_Analisis_Data`.
 
 ## Setup Environment - Shell/Terminal
 
