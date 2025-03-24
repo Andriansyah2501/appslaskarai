@@ -80,3 +80,29 @@ ax.grid(axis="y")
 # Tampilkan di Streamlit
 st.pyplot(fig)
 
+st.title("📊 Analisis Peminjaman Sepeda")
+
+# Analisis Pengaruh Musim terhadap Peminjaman Sepeda
+st.subheader("🚴‍♂️ Pengaruh Musim terhadap Peminjaman Sepeda")
+st.write(
+    """
+    Jumlah peminjaman sepeda cenderung bervariasi tergantung musim. Biasanya, peminjaman lebih tinggi saat musim panas dan semi, ketika cuaca lebih bersahabat. 
+    Sebaliknya, pada musim hujan atau dingin, jumlah peminjaman menurun karena kondisi cuaca yang kurang mendukung. 
+    
+    Hal ini menunjukkan bahwa musim memiliki peran penting dalam menentukan tingkat penggunaan sepeda, sehingga bisnis penyewaan dapat menyesuaikan strategi, 
+    seperti menawarkan promo khusus atau layanan tambahan di musim sepi.
+    """
+)
+
+# Analisis Jam dengan Peminjaman Sepeda Tertinggi
+st.subheader("⏰ Jam dengan Peminjaman Sepeda Tertinggi")
+st.write(
+    """
+    Peminjaman sepeda mencapai puncaknya pada jam sibuk, yaitu pagi hari saat orang berangkat kerja atau kuliah, serta sore hingga malam saat mereka pulang. 
+    
+    Pola ini mengindikasikan bahwa banyak pengguna memanfaatkan sepeda sebagai moda transportasi utama, bukan hanya untuk rekreasi. 
+    Dengan memahami tren ini, bisnis dapat menyesuaikan ketersediaan sepeda dan menawarkan paket sewa yang sesuai dengan kebutuhan pengguna di jam-jam sibuk.
+    """
+)
+
+
