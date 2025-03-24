@@ -68,13 +68,14 @@ st.pyplot(fig)
 
 
 # Pertanyaan 2:  Pada jam berapa peminjaman sepeda tertinggi?
-plt.figure(figsize=(10, 5))
-sns.barplot(x=hour_df["hr"], y=hour_df["cnt"], estimator=sum, palette="viridis")
-plt.title("Distribusi Peminjaman Sepeda per Jam (Hour Dataset)")
-plt.xlabel("Jam")
-plt.ylabel("Total Peminjaman")
-plt.xticks(range(0, 24))
-plt.grid(axis="y")
-plt.tight_layout()
-plt.show()
+fig, ax = plt.subplots(figsize=(10, 5))
+sns.barplot(x=hour_df["hr"], y=hour_df["cnt"], estimator=sum, palette="viridis", ax=ax)
+ax.set_title("Distribusi Peminjaman Sepeda per Jam (Hour Dataset)")
+ax.set_xlabel("Jam")
+ax.set_ylabel("Total Peminjaman")
+ax.set_xticks(range(0, 24))
+ax.grid(axis="y")
+
+# Tampilkan di Streamlit
+st.pyplot(fig)
 
