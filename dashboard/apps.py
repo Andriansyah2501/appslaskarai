@@ -51,20 +51,6 @@ with data_tab2:
     st.dataframe(hour_df)
 
 
-# Grafik garis: Penyewaan dari waktu ke waktu
-st.subheader("Total Penyewaan dari Waktu ke Waktu")
-fig, ax = plt.subplots()
-ax.plot(day_df['dteday'], day_df['cnt'], label="Total Penyewaan Harian", color='blue')
-ax.set_xlabel("Tanggal")
-ax.set_ylabel("Total Penyewaan")
-ax.legend()
-st.pyplot(fig)
-
-# Grafik garis: Penyewaan per jam
-st.subheader("Total Penyewaan Sepeda Per Jam")
-hourly_avg = hour_df.groupby('hr')['cnt'].mean()
-st.line_chart(hourly_avg)
-
 # Pertanyaan 1: Bagaimana pengaruh musim terhadap jumlah peminjaman sepeda?
 season_mapping = {1: "Musim Dingin", 2: "Musim Semi", 3: "Musim Panas", 4: "Musim Gugur"}
 day_df["season_label"] = day_df["season"].map(season_mapping)
