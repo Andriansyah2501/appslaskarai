@@ -37,14 +37,14 @@ Instruksi spesifik untuk menyiapkan dependensi menggunakan shell/terminal (CMD d
        python -m venv myenv
       2. Aktifkan:
        myenv\Scripts\activate
-      3. Instal:
+      3. Install library :
        pip install streamlit pandas matplotlib seaborn
       4. Jalankan:
-         cd C:/Proyek_Analisis_Data-Dengn-Python
+         cd C:/Proyek_Analisis_Data_Python
       5. Lanjutkan
          streamlit run dashboard.py
          
     -Dan Nanti hasilnya akan seperti ini:
-     You can now view your Streamlit app in your browser. Local URL: http://localhost:8501
+     https://visualisasidatalaskarai.streamlit.app/
 
 
