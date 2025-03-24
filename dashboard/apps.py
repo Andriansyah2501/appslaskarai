@@ -52,10 +52,10 @@ with data_tab2:
 
 
 # Pertanyaan 1: Bagaimana pengaruh musim terhadap jumlah peminjaman sepeda?
+st.subheader("📊 Bagaimana pengaruh musim terhadap jumlah peminjaman sepeda?")
 season_mapping = {1: "Musim Dingin", 2: "Musim Semi", 3: "Musim Panas", 4: "Musim Gugur"}
 day_df["season_label"] = day_df["season"].map(season_mapping)
 season_trend = day_df.groupby("season_label")["cnt"].mean().reset_index()
-
 plt.figure(figsize=(8, 5))
 sns.barplot(x=season_trend["season_label"], y=season_trend["cnt"], palette="coolwarm")
 plt.title("Pengaruh Musim terhadap Peminjaman Sepeda")
