@@ -64,6 +64,7 @@ plt.ylabel("Rata-rata Peminjaman")
 plt.grid(axis="y")
 plt.tight_layout()
 plt.show()
+st.pyplot(fig1)
 
 
 # Pertanyaan 2:  Pada jam berapa peminjaman sepeda tertinggi?
