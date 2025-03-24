@@ -44,7 +44,7 @@ Instruksi spesifik untuk menyiapkan dependensi menggunakan shell/terminal (CMD d
       5. Lanjutkan
          streamlit run dashboard.py
          
-    -Dan Nanti hasilnya akan seperti ini:
+    -Hasil nya seperti ini 
      https://visualisasidatalaskarai.streamlit.app/
 
 
