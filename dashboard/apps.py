@@ -56,15 +56,15 @@ st.subheader("📊 Bagaimana pengaruh musim terhadap jumlah peminjaman sepeda?")
 season_mapping = {1: "Musim Dingin", 2: "Musim Semi", 3: "Musim Panas", 4: "Musim Gugur"}
 day_df["season_label"] = day_df["season"].map(season_mapping)
 season_trend = day_df.groupby("season_label")["cnt"].mean().reset_index()
-plt.figure(figsize=(8, 5))
-sns.barplot(x=season_trend["season_label"], y=season_trend["cnt"], palette="coolwarm")
-plt.title("Pengaruh Musim terhadap Peminjaman Sepeda")
-plt.xlabel("Musim")
-plt.ylabel("Rata-rata Peminjaman")
-plt.grid(axis="y")
-plt.tight_layout()
-plt.show()
-st.pyplot(fig1)
+fig, ax = plt.subplots(figsize=(8, 5))
+sns.barplot(x=season_trend["season_label"], y=season_trend["cnt"], palette="coolwarm", ax=ax)
+ax.set_title("Pengaruh Musim terhadap Peminjaman Sepeda")
+ax.set_xlabel("Musim")
+ax.set_ylabel("Rata-rata Peminjaman")
+ax.grid(axis="y")
+
+# Tampilkan di Streamlit
+st.pyplot(fig)
 
 
 # Pertanyaan 2:  Pada jam berapa peminjaman sepeda tertinggi?
