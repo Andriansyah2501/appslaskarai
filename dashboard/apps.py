@@ -90,22 +90,6 @@ plt.grid(axis="y")
 plt.tight_layout()
 plt.show()
 
-# Analisis RFM
-st.subheader("Analisis RFM (Recency, Frequency, Monetary)")
-latest_date = day_df['dteday'].max()
-rfm_df = day_df.groupby('weekday').agg(
-    Recency=('dteday', lambda x: (latest_date - x.max()).days),
-    Frequency=('cnt', 'count'),
-    Monetary=('cnt', 'sum')
-).reset_index()
-
-st.write("Recency: Seberapa baru penyewaan terakhir dilakukan.")
-st.write("Frequency: Seberapa sering penyewaan dilakukan.")
-st.write("Monetary: Total penyewaan dalam periode tertentu.")
-
-st.dataframe(rfm_df)
-
-
 # Tab untuk Analisis Pertanyaan
 st.subheader("Analisis Penyewaan Sepeda")
 tab1, tab2 = st.tabs(["Pengaruh Cuaca", "Distribusi Penyewaan Berdasarkan Jam"])
