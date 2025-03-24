@@ -62,17 +62,29 @@ st.subheader("Total Penyewaan Sepeda Per Jam")
 hourly_avg = hour_df.groupby('hr')['cnt'].mean()
 st.line_chart(hourly_avg)
 
-# Pertanyaan 1: Bagaimana musim mempengaruhi penyewaan sepeda?
-st.subheader("Penyewaan Sepeda Berdasarkan Musim")
-season_avg = day_df.groupby('season')['cnt'].mean()
-st.bar_chart(season_avg)
-st.write("Musim dingin (4) dan musim panas (2) cenderung memiliki penyewaan sepeda lebih tinggi dibandingkan musim semi (1) dan musim gugur (3).")
+# Pertanyaan 1: Bagaimana pengaruh musim terhadap jumlah peminjaman sepeda?
+season_mapping = {1: "Musim Dingin", 2: "Musim Semi", 3: "Musim Panas", 4: "Musim Gugur"}
+day_df["season_label"] = day_df["season"].map(season_mapping)
+season_trend = day_df.groupby("season_label")["cnt"].mean().reset_index()
 
-# Pertanyaan 2: Bagaimana hari kerja mempengaruhi penyewaan?
-st.subheader("Penyewaan Sepeda: Hari Kerja vs. Hari Libur")
-working_avg = day_df.groupby('workingday')['cnt'].mean()
-st.bar_chart(working_avg)
-st.write("Penyewaan sepeda umumnya lebih tinggi pada hari kerja dibandingkan hari libur.")
+plt.figure(figsize=(8, 5))
+sns.barplot(x=season_trend["season_label"], y=season_trend["cnt"], palette="coolwarm")
+plt.title("Pengaruh Musim terhadap Peminjaman Sepeda")
+plt.xlabel("Musim")
+plt.ylabel("Rata-rata Peminjaman")
+plt.grid(axis="y")
+plt.tight_layout()
+plt.show()
+# Pertanyaan 2:  Pada jam berapa peminjaman sepeda tertinggi?
+plt.figure(figsize=(10, 5))
+sns.barplot(x=hour_df["hr"], y=hour_df["cnt"], estimator=sum, palette="viridis")
+plt.title("Distribusi Peminjaman Sepeda per Jam (Hour Dataset)")
+plt.xlabel("Jam")
+plt.ylabel("Total Peminjaman")
+plt.xticks(range(0, 24))
+plt.grid(axis="y")
+plt.tight_layout()
+plt.show()
 
 # Analisis RFM
 st.subheader("Analisis RFM (Recency, Frequency, Monetary)")
