@@ -42,7 +42,7 @@ Instruksi spesifik untuk menyiapkan dependensi menggunakan shell/terminal (CMD d
       4. Jalankan:
          cd C:/Proyek_Analisis_Data_Python
       5. Lanjutkan
-         streamlit run dashboard.py
+         streamlit run apps.py
          
     -Hasil nya seperti ini 
      https://visualisasidatalaskarai.streamlit.app/
