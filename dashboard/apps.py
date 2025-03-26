@@ -1,59 +1,67 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Konfigurasi tema
+st.set_page_config(page_title="Bike Sharing Dashboard", layout="wide", page_icon="🚲")
 
-# Load Dataset
-day_url = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/dashboard/day.csv"
-hour_url = "https://raw.githubusercontent.com/andriansyah2501/appslaskarai/main/dashboard/hour.csv"
+# Load data
+df = pd.read_csv('day.csv')
+df['weather_desc'] = df['weathersit'].map({1: 'Cerah', 2: 'Berkabut', 3: 'Hujan Ringan', 4: 'Hujan Berat'})
+df['is_weekend'] = df['weekday'].apply(lambda x: 'Weekend' if x >= 5 else 'Weekday')
 
-day_df = pd.read_csv(day_url)
-hour_df = pd.read_csv(hour_url)
+# Sidebar untuk filter
+st.sidebar.title("Filter Data")
+weather_filter = st.sidebar.multiselect(
+    "Pilih Kondisi Cuaca", 
+    options=df['weather_desc'].unique(), 
+    default=df['weather_desc'].unique()
+)
+day_filter = st.sidebar.multiselect(
+    "Pilih Tipe Hari", 
+    options=['Weekday', 'Weekend'], 
+    default=['Weekday', 'Weekend']
+)
 
-day_df['dteday'] = pd.to_datetime(day_df['dteday'])
-hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
+# Filter dataset berdasarkan pilihan
+filtered_df = df[df['weather_desc'].isin(weather_filter) & df['is_weekend'].isin(day_filter)]
 
-season_mapping = {1: "Musim Dingin", 2: "Musim Semi", 3: "Musim Panas", 4: "Musim Gugur"}
-day_df["season_label"] = day_df["season"].map(season_mapping)
+# Judul utama
+st.title("🚲 Bike Sharing Dashboard")
+st.markdown("Analisis Penyewaan Sepeda Berdasarkan Cuaca dan Hari")
 
-# Sidebar untuk filter data
-st.sidebar.header("🔍 Filter Data")
-selected_season = st.sidebar.multiselect("Pilih Musim", day_df["season_label"].unique(), default=day_df["season_label"].unique())
+# Metrik cepat
+col1, col2, col3 = st.columns(3)
+col1.metric("Total Penyewaan", f"{int(filtered_df['cnt'].sum()):,}")
+col2.metric("Rata-rata Harian", f"{int(filtered_df['cnt'].mean()):,}")
+col3.metric("Hari Tercatat", f"{len(filtered_df)}")
 
-date_range = st.sidebar.date_input("Pilih Rentang Tanggal", [day_df['dteday'].min(), day_df['dteday'].max()])
+# Visualisasi 1: Pengaruh Cuaca
+st.subheader("📊 Pengaruh Cuaca terhadap Penyewaan")
+weather_group = filtered_df.groupby('weather_desc')['cnt'].mean().reset_index()
+fig1, ax1 = plt.subplots(figsize=(10, 5))
+sns.barplot(x='weather_desc', y='cnt', data=weather_group, palette='viridis', ax=ax1)
+ax1.set_title('Rata-rata Penyewaan Berdasarkan Cuaca', fontsize=14, pad=10)
+ax1.set_xlabel('Kondisi Cuaca', fontsize=12)
+ax1.set_ylabel('Jumlah Penyewaan (Rata-rata)', fontsize=12)
+plt.xticks(rotation=45)
+st.pyplot(fig1)
 
-filtered_df = day_df[(day_df["season_label"].isin(selected_season)) & (day_df["dteday"].between(date_range[0], date_range[1]))]
+# Visualisasi 2: Weekday vs Weekend
+st.subheader("📊 Penyewaan: Weekday vs Weekend")
+day_group = filtered_df.groupby('is_weekend')['cnt'].mean().reset_index()
+fig2, ax2 = plt.subplots(figsize=(10, 5))
+sns.barplot(x='is_weekend', y='cnt', data=day_group, palette='magma', ax=ax2)
+ax2.set_title('Rata-rata Penyewaan: Weekday vs Weekend', fontsize=14, pad=10)
+ax2.set_xlabel('Tipe Hari', fontsize=12)
+ax2.set_ylabel('Jumlah Penyewaan (Rata-rata)', fontsize=12)
+st.pyplot(fig2)
 
-# Pilihan metrik
-st.sidebar.header("📊 Pilih Metrik Statistik")
-show_total = st.sidebar.checkbox("Total Penyewaan")
-show_avg = st.sidebar.checkbox("Rata-rata Penyewaan")
+# Tabel ringkasan (opsional)
+st.subheader("📋 Ringkasan Data")
+st.dataframe(weather_group.style.format({"cnt": "{:,.0f}"}))
 
-st.title("🚴‍♂️ Dashboard Penyewaan Sepeda")
-
-if show_total:
-    st.metric("Total Penyewaan (Harian)", filtered_df['cnt'].sum())
-if show_avg:
-    st.metric("Rata-rata Penyewaan per Hari", round(filtered_df['cnt'].mean(), 2))
-
-st.subheader("📊 Pengaruh Musim terhadap Peminjaman Sepeda")
-season_trend = filtered_df.groupby("season_label")["cnt"].mean().reset_index()
-fig, ax = plt.subplots(figsize=(8, 5))
-sns.barplot(x=season_trend["season_label"], y=season_trend["cnt"], palette="coolwarm", ax=ax)
-ax.set_title("Pengaruh Musim terhadap Peminjaman Sepeda")
-st.pyplot(fig)
-
-st.subheader("⏰ Distribusi Peminjaman Sepeda per Jam")
-fig, ax = plt.subplots(figsize=(10, 5))
-sns.barplot(x=hour_df["hr"], y=hour_df["cnt"], estimator=sum, palette="viridis", ax=ax)
-ax.set_title("Distribusi Peminjaman Sepeda per Jam")
-ax.set_xlabel("Jam")
-ax.set_ylabel("Total Peminjaman")
-ax.set_xticks(range(0, 24))
-ax.grid(axis="y")
-st.pyplot(fig)
-
-st.write("### 📊 Analisis Peminjaman Sepeda")
-st.write("Peminjaman sepeda cenderung lebih tinggi pada musim panas dan semi. Pengguna lebih sering menyewa sepeda saat jam sibuk (pagi dan sore).")
+# Footer
+st.markdown("---")
+st.markdown("Dibuat dengan ❤️ menggunakan Streamlit | Data: Bike Sharing Dataset")
