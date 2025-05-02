@@ -1,3 +1,4 @@
+Projek-Analisis-Data-Dengn-Python
 # Projek-Akhir-Belajar-Analisis-Data-Dengan-Python
 # Projek-Analisis-Data-Dengn-Python
 
@@ -14,7 +15,7 @@ Langkah-langkah untuk menyiapkan lingkungan agar dashboard bisa dijalankan.
   - Harusnya muncul versi (misalnya, `Python 3.9.0`).
 
 ### 2. Unduh File Proyek
-- Salin semua file (`day.csv`, `hour.csv` , `apps.py`, `requirements.txt`) ke folder lokal, misalnya: `C:\Proyek_Analisis_Data`.
+- Salin semua file (`day.csv`, `dashboard.py`, `requirements.txt`) ke folder lokal, misalnya: `C:\Proyek_Analisis_Data`.
 
 ## Setup Environment - Shell/Terminal
 
@@ -37,14 +38,13 @@ Instruksi spesifik untuk menyiapkan dependensi menggunakan shell/terminal (CMD d
        python -m venv myenv
       2. Aktifkan:
        myenv\Scripts\activate
-      3. Install library :
+      3. Instal:
        pip install streamlit pandas matplotlib seaborn
       4. Jalankan:
-         cd C:/Proyek_Analisis_Data_Python
+         cd C:/Proyek_Analisis_Data-Dengn-Python
       5. Lanjutkan
-         streamlit run apps.py
+         streamlit run dashboard.py
          
-    -Hasil nya seperti ini 
-     https://visualisasidatalaskarai.streamlit.app/
-
+    -Dan Nanti hasilnya akan seperti ini:
+     You can now view your Streamlit app in your browser. Local URL: http://localhost:8501
 
