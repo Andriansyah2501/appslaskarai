@@ -1,2 +1,1 @@
 https://share.streamlit.io/
-https://proyekvisualisasidata.streamlit.app/
